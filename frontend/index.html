@@ -9,6 +9,59 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:#0a0a0f;color:#e8e6f0;min-height:100vh}
+
+/* ── NAVBAR ── */
+.navbar{
+  position:sticky;top:0;z-index:999;
+  background:rgba(10,10,15,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  padding:0 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  height:56px;
+}
+.nav-logo{
+  font-family:'DM Serif Display',serif;
+  font-size:1.35rem;
+  background:linear-gradient(135deg,#fff 0%,#c4b5f8 50%,#f0abfc 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  cursor:pointer;
+  user-select:none;
+}
+.nav-right{display:flex;align-items:center;gap:0.6rem}
+.nav-btn{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:8px;
+  padding:0.38rem 0.85rem;
+  font-size:0.78rem;
+  color:rgba(255,255,255,0.5);
+  cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+  transition:all 0.15s;
+  display:inline-flex;align-items:center;gap:0.35rem;
+}
+.nav-btn:hover{color:#fff;border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.08)}
+.nav-btn.home{background:rgba(167,139,250,0.1);border-color:rgba(167,139,250,0.3);color:#c4b5f8}
+.nav-btn.home:hover{background:rgba(167,139,250,0.18);border-color:rgba(167,139,250,0.5);color:#fff}
+.nav-search-wrap{position:relative;width:260px}
+.nav-search-wrap svg{position:absolute;left:0.75rem;top:50%;transform:translateY(-50%);opacity:0.3;pointer-events:none}
+#navSearch{
+  width:100%;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:8px;
+  padding:0.42rem 0.9rem 0.42rem 2.4rem;
+  font-size:0.82rem;
+  color:#e8e6f0;
+  font-family:'DM Sans',sans-serif;
+  outline:none;
+  transition:all 0.2s;
+}
+#navSearch::placeholder{color:rgba(255,255,255,0.2)}
+#navSearch:focus{border-color:rgba(167,139,250,0.45);background:rgba(255,255,255,0.08)}
+
+/* ── HERO ── */
 .hero{background:linear-gradient(135deg,#0a0a0f 0%,#110d1a 50%,#0d0f1a 100%);padding:3.5rem 2rem 2.5rem;border-bottom:1px solid rgba(255,255,255,0.06);text-align:center;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(circle,rgba(138,43,226,0.15) 0%,transparent 70%);pointer-events:none}
 .eyebrow{font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(167,139,250,0.6);margin-bottom:0.7rem;font-weight:500}
@@ -20,35 +73,45 @@ body{font-family:'DM Sans',sans-serif;background:#0a0a0f;color:#e8e6f0;min-heigh
 #searchInput::placeholder{color:rgba(255,255,255,0.22)}
 #searchInput:focus{border-color:rgba(167,139,250,0.55);background:rgba(255,255,255,0.09);box-shadow:0 0 0 4px rgba(167,139,250,0.08)}
 .hint{font-size:0.73rem;color:rgba(255,255,255,0.18);margin-top:0.6rem;text-align:center}
+
 .genre-bar{padding:1rem 2rem;display:flex;gap:0.45rem;flex-wrap:wrap;justify-content:center;border-bottom:1px solid rgba(255,255,255,0.05)}
 .gp{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:20px;padding:0.32rem 0.9rem;font-size:0.78rem;color:rgba(255,255,255,0.45);cursor:pointer;transition:all 0.15s;font-family:'DM Sans',sans-serif}
 .gp:hover,.gp.active{background:rgba(167,139,250,0.14);border-color:rgba(167,139,250,0.4);color:#c4b5f8}
+
 .main{flex:1;padding:1.8rem 2rem}
 .slabel{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1rem;font-weight:500}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1.1rem;margin-bottom:2.5rem}
-.mc{background:rgba(255,255,255,0.033);border:1px solid rgba(255,255,255,0.07);border-radius:12px;overflow:hidden;cursor:pointer !important;transition:all 0.2s;position:relative}
+.mc{background:rgba(255,255,255,0.033);border:1px solid rgba(255,255,255,0.07);border-radius:12px;overflow:hidden;cursor:pointer;transition:all 0.2s;position:relative}
 .mc:hover{border-color:rgba(167,139,250,0.35);transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,0.4)}
 .mp{aspect-ratio:2/3;position:relative;overflow:hidden;background:#111}
-.mp img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;display:block;pointer-events:none !important}
+.mp img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;display:block;pointer-events:none}
 .mc:hover .mp img{transform:scale(1.05)}
-.poster-inner{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none !important}
-.mp-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:3.5rem;opacity:0.2;pointer-events:none !important}
-.pg{position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(transparent,rgba(0,0,0,0.75));pointer-events:none !important}
-.yb{position:absolute;top:0.5rem;right:0.5rem;background:rgba(0,0,0,0.65);border:1px solid rgba(255,255,255,0.15);border-radius:5px;padding:0.12rem 0.4rem;font-size:0.67rem;color:rgba(255,255,255,0.7);z-index:2;pointer-events:none !important}
-.rb{position:absolute;bottom:0.55rem;right:0.55rem;background:rgba(0,0,0,0.75);border-radius:5px;padding:0.15rem 0.45rem;font-size:0.72rem;color:#fbbf24;font-weight:600;z-index:2;pointer-events:none !important}
-.mi{padding:0.75rem;pointer-events:none !important}
+.poster-inner{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
+.pg{position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(transparent,rgba(0,0,0,0.75));pointer-events:none}
+.yb{position:absolute;top:0.5rem;right:0.5rem;background:rgba(0,0,0,0.65);border:1px solid rgba(255,255,255,0.15);border-radius:5px;padding:0.12rem 0.4rem;font-size:0.67rem;color:rgba(255,255,255,0.7);z-index:2;pointer-events:none}
+.rb{position:absolute;bottom:0.55rem;right:0.55rem;background:rgba(0,0,0,0.75);border-radius:5px;padding:0.15rem 0.45rem;font-size:0.72rem;color:#fbbf24;font-weight:600;z-index:2;pointer-events:none}
+.mi{padding:0.75rem;pointer-events:none}
 .mt{font-size:0.84rem;font-weight:500;color:#e8e6f0;line-height:1.3;margin-bottom:0.25rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .mg{font-size:0.7rem;color:rgba(255,255,255,0.3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sb{height:2px;background:rgba(255,255,255,0.07);margin-top:0.45rem;border-radius:2px;overflow:hidden}
 .sf{height:100%;background:linear-gradient(90deg,#7c3aed,#c4b5f8);border-radius:2px}
 .sim-label{font-size:0.65rem;color:rgba(167,139,250,0.65);margin-top:0.2rem}
+
 .tr{display:flex;gap:0.45rem;overflow-x:auto;padding-bottom:0.5rem;margin-bottom:1.5rem;scrollbar-width:none}
 .tr::-webkit-scrollbar{display:none}
 .tc{flex-shrink:0;background:rgba(255,255,255,0.038);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:0.42rem 0.85rem;font-size:0.76rem;cursor:pointer;transition:all 0.15s;white-space:nowrap;color:rgba(255,255,255,0.52);display:flex;align-items:center;gap:0.4rem}
 .tc .cr{color:#fbbf24;font-size:0.7rem}
 .tc:hover{border-color:rgba(167,139,250,0.3);color:#c4b5f8}
+
+/* ── DETAIL PANEL ── */
 .dp{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);border-radius:16px;overflow:hidden;margin-bottom:2rem;display:none}
 .dp.vis{display:block}
+.detail-nav{
+  display:flex;align-items:center;gap:0.6rem;
+  padding:1rem 1.5rem;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  background:rgba(255,255,255,0.01);
+}
 .dh{display:flex;gap:2rem;padding:2rem;background:rgba(255,255,255,0.018);border-bottom:1px solid rgba(255,255,255,0.05)}
 .dpo{width:160px;flex-shrink:0;border-radius:12px;overflow:hidden;aspect-ratio:2/3;background:#111;position:relative}
 .dpo img{width:100%;height:100%;object-fit:cover;display:block}
@@ -65,20 +128,37 @@ body{font-family:'DM Sans',sans-serif;background:#0a0a0f;color:#e8e6f0;min-heigh
 .dc{font-size:0.8rem;color:rgba(255,255,255,0.3)}
 .dc strong{color:rgba(255,255,255,0.5)}
 .rs{padding:1.8rem 2rem}
-.bb{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.4rem 0.9rem;font-size:0.78rem;color:rgba(255,255,255,0.45);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s;display:inline-flex;align-items:center;gap:0.35rem;margin:1rem 1.5rem 0}
-.bb:hover{color:#fff;border-color:rgba(255,255,255,0.25)}
 .ml-info{display:inline-flex;align-items:center;gap:0.4rem;background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.18);border-radius:8px;padding:0.3rem 0.7rem;font-size:0.71rem;color:rgba(16,185,129,0.7);margin-bottom:1rem}
 .empty{text-align:center;padding:3rem 1rem;color:rgba(255,255,255,0.18);font-size:0.9rem}
-@media(max-width:600px){
-.hero{padding:2.5rem 1rem 2rem}.hero-title{font-size:2.5rem}
-.main{padding:1.2rem}.genre-bar{padding:0.7rem 1rem}
-.grid{grid-template-columns:repeat(2,1fr);gap:0.75rem}
-.dh{flex-direction:column}.dpo{width:120px}.dt{font-size:1.5rem}}
+
+@media(max-width:650px){
+  .navbar{padding:0 1rem}
+  .nav-search-wrap{display:none}
+  .hero{padding:2.5rem 1rem 2rem}.hero-title{font-size:2.2rem}
+  .main{padding:1.2rem}.genre-bar{padding:0.7rem 1rem}
+  .grid{grid-template-columns:repeat(2,1fr);gap:0.75rem}
+  .dh{flex-direction:column}.dpo{width:120px}.dt{font-size:1.5rem}
+  .detail-nav{padding:0.75rem 1rem}
+}
 </style>
 </head>
 <body>
 <div style="min-height:100vh;display:flex;flex-direction:column">
-<div class="hero">
+
+<!-- STICKY NAVBAR -->
+<nav class="navbar">
+  <div class="nav-logo" id="navLogo">🎬 CineMatch</div>
+  <div class="nav-right">
+    <div class="nav-search-wrap">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="navSearch" placeholder="Quick search..."/>
+    </div>
+    <button class="nav-btn home" id="homeBtn">🏠 Home</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="heroSection">
   <div class="eyebrow">Machine Learning · Round 2 Assignment</div>
   <div class="hero-title">CineMatch</div>
   <div class="hero-sub">AI-powered recommendations · TF-IDF + Cosine Similarity · 150 curated films</div>
@@ -88,10 +168,20 @@ body{font-family:'DM Sans',sans-serif;background:#0a0a0f;color:#e8e6f0;min-heigh
   </div>
   <div class="hint">Try: "Christopher Nolan" &nbsp;·&nbsp; "Sci-Fi" &nbsp;·&nbsp; "Parasite" &nbsp;·&nbsp; "Crime"</div>
 </div>
+
+<!-- GENRE BAR -->
 <div class="genre-bar" id="genreBar"></div>
+
+<!-- MAIN -->
 <div class="main">
+
+  <!-- DETAIL PANEL -->
   <div class="dp" id="detailPanel">
-    <button class="bb" id="backBtn">&#8592; Back to browse</button>
+    <div class="detail-nav">
+      <button class="nav-btn" id="backBtn">&#8592; Back</button>
+      <button class="nav-btn home" id="detailHomeBtn">🏠 Home</button>
+      <span style="font-size:0.78rem;color:rgba(255,255,255,0.2);margin-left:0.3rem">· <span id="breadcrumb">Movie Details</span></span>
+    </div>
     <div class="dh">
       <div class="dpo" id="dPoster">
         <div class="dpo-fallback" id="dPosterFallback"></div>
@@ -110,6 +200,8 @@ body{font-family:'DM Sans',sans-serif;background:#0a0a0f;color:#e8e6f0;min-heigh
       <div class="grid" id="recGrid"></div>
     </div>
   </div>
+
+  <!-- BROWSE VIEW -->
   <div id="browseView">
     <div id="topSec">
       <div class="slabel">&#11088; Highest rated films</div>
@@ -120,6 +212,7 @@ body{font-family:'DM Sans',sans-serif;background:#0a0a0f;color:#e8e6f0;min-heigh
       <div class="grid" id="movGrid"></div>
     </div>
   </div>
+
 </div>
 </div>
 
@@ -162,17 +255,44 @@ async function loadPoster(el,title,year){
   }
 }
 
-// THE KEY FIX: use event delegation on document level
-document.addEventListener('click', function(e){
-  const card = e.target.closest('.mc');
+// Event delegation — handles all card clicks everywhere
+document.addEventListener('click',function(e){
+  const card=e.target.closest('.mc');
   if(card){
-    e.stopPropagation();
-    const id = parseInt(card.getAttribute('data-id'));
+    const id=parseInt(card.getAttribute('data-id'));
     if(id) showDetail(id);
   }
 });
 
-function makeCard(m, sim=false){
+function goHome(){
+  document.getElementById('detailPanel').classList.remove('vis');
+  document.getElementById('browseView').style.display='block';
+  document.getElementById('heroSection').style.display='block';
+  document.getElementById('searchInput').value='';
+  document.getElementById('navSearch').value='';
+  document.querySelectorAll('.gp').forEach(p=>p.classList.remove('active'));
+  activeG=null;
+  document.getElementById('topSec').style.display='block';
+  document.getElementById('movLabel').textContent='All films — click any to get AI recommendations';
+  renderGrid(topN(),'movGrid');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Home button — navbar
+document.getElementById('homeBtn').onclick=goHome;
+// Home button — inside detail panel
+document.getElementById('detailHomeBtn').onclick=goHome;
+// Logo click
+document.getElementById('navLogo').onclick=goHome;
+
+// Back button — goes back to browse without resetting
+document.getElementById('backBtn').onclick=function(){
+  document.getElementById('detailPanel').classList.remove('vis');
+  document.getElementById('browseView').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+
+function makeCard(m,sim=false){
   const [c1,c2]=bg(m.title);
   const g=m.genres.split(' ').slice(0,2).join(' · ');
   const simHtml=sim&&m.similarity!==undefined?
@@ -208,13 +328,13 @@ function showDetail(id){
   const m=MM[id]; if(!m) return;
   const [c1,c2]=bg(m.title);
   const dpo=document.getElementById('dPoster');
-  // clear old poster image
   const oldImg=dpo.querySelector('img');
   if(oldImg) oldImg.remove();
   dpo.style.background='linear-gradient(135deg,'+c1+','+c2+')';
   document.getElementById('dPosterFallback').textContent=m.title[0];
   loadPoster(dpo,m.title,m.year);
   document.getElementById('dTitle').textContent=m.title;
+  document.getElementById('breadcrumb').textContent=m.title;
   document.getElementById('dGenres').innerHTML=m.genres.split(' ').map(g=>'<span class="tag">'+g+'</span>').join('');
   document.getElementById('dStats').innerHTML=
     '<div><div class="sv g">&#9733; '+m.rating+'</div><div class="sl2">IMDb Rating</div></div>'
@@ -230,12 +350,6 @@ function showDetail(id){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-document.getElementById('backBtn').onclick=function(){
-  document.getElementById('detailPanel').classList.remove('vis');
-  document.getElementById('browseView').style.display='block';
-  window.scrollTo({top:0,behavior:'smooth'});
-};
-
 let activeG=null;
 function initGenres(){
   const genres=['Action','Drama','Comedy','Crime','Sci-Fi','Horror','Romance','Thriller','Fantasy','Animation','War','Mystery','Adventure','Biography','Western','Music'];
@@ -248,6 +362,8 @@ function initGenres(){
       activeG=g;
       bar.querySelectorAll('.gp').forEach(x=>x.classList.remove('active'));
       this.classList.add('active');
+      document.getElementById('detailPanel').classList.remove('vis');
+      document.getElementById('browseView').style.display='block';
       document.getElementById('topSec').style.display='none';
       const f=MOVIES.filter(m=>m.genres.toLowerCase().includes(g.toLowerCase())).sort((a,b)=>b.rating-a.rating).slice(0,28);
       document.getElementById('movLabel').textContent=g+' films';
@@ -264,28 +380,38 @@ function reset(){
   renderGrid(topN(),'movGrid');
 }
 
-let dbt=null;
-document.getElementById('searchInput').oninput=function(){
-  clearTimeout(dbt);
-  const q=this.value.trim().toLowerCase();
-  // search always works regardless of detail panel
+function handleSearch(q){
   document.getElementById('detailPanel').classList.remove('vis');
   document.getElementById('browseView').style.display='block';
   document.getElementById('topSec').style.display=q?'none':'block';
   document.querySelectorAll('.gp').forEach(p=>p.classList.remove('active'));
   activeG=null;
   if(!q){reset();return;}
-  dbt=setTimeout(()=>{
-    const results=MOVIES.filter(m=>
-      m.title.toLowerCase().includes(q)||
-      m.genres.toLowerCase().includes(q)||
-      m.director.toLowerCase().includes(q)||
-      m.cast.toLowerCase().includes(q)||
-      m.plot.toLowerCase().includes(q)
-    ).slice(0,32);
-    document.getElementById('movLabel').textContent='Results for "'+this.value.trim()+'"';
-    renderGrid(results,'movGrid');
-  },300);
+  const results=MOVIES.filter(m=>
+    m.title.toLowerCase().includes(q)||
+    m.genres.toLowerCase().includes(q)||
+    m.director.toLowerCase().includes(q)||
+    m.cast.toLowerCase().includes(q)||
+    m.plot.toLowerCase().includes(q)
+  ).slice(0,32);
+  document.getElementById('movLabel').textContent='Results for "'+q+'"';
+  renderGrid(results,'movGrid');
+}
+
+let dbt=null;
+function onSearch(val){
+  clearTimeout(dbt);
+  const q=val.trim().toLowerCase();
+  dbt=setTimeout(()=>handleSearch(q),300);
+}
+
+document.getElementById('searchInput').oninput=function(){
+  document.getElementById('navSearch').value=this.value;
+  onSearch(this.value);
+};
+document.getElementById('navSearch').oninput=function(){
+  document.getElementById('searchInput').value=this.value;
+  onSearch(this.value);
 };
 
 function init(){

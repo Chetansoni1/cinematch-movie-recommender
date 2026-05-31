@@ -26,16 +26,17 @@ body{font-family:'DM Sans',sans-serif;background:#0a0a0f;color:#e8e6f0;min-heigh
 .main{flex:1;padding:1.8rem 2rem}
 .slabel{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1rem;font-weight:500}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1.1rem;margin-bottom:2.5rem}
-.mc{background:rgba(255,255,255,0.033);border:1px solid rgba(255,255,255,0.07);border-radius:12px;overflow:hidden;cursor:pointer;transition:all 0.2s;position:relative;z-index:1}
+.mc{background:rgba(255,255,255,0.033);border:1px solid rgba(255,255,255,0.07);border-radius:12px;overflow:hidden;cursor:pointer !important;transition:all 0.2s;position:relative}
 .mc:hover{border-color:rgba(167,139,250,0.35);transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,0.4)}
 .mp{aspect-ratio:2/3;position:relative;overflow:hidden;background:#111}
-.mp img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;pointer-events:none}
+.mp img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;display:block;pointer-events:none !important}
 .mc:hover .mp img{transform:scale(1.05)}
-.mp-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:3.5rem;opacity:0.2;pointer-events:none}
-.pg{position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(transparent,rgba(0,0,0,0.75));pointer-events:none}
-.yb{position:absolute;top:0.5rem;right:0.5rem;background:rgba(0,0,0,0.65);border:1px solid rgba(255,255,255,0.15);border-radius:5px;padding:0.12rem 0.4rem;font-size:0.67rem;color:rgba(255,255,255,0.7);z-index:2;pointer-events:none}
-.rb{position:absolute;bottom:0.55rem;right:0.55rem;background:rgba(0,0,0,0.75);border-radius:5px;padding:0.15rem 0.45rem;font-size:0.72rem;color:#fbbf24;font-weight:600;z-index:2;pointer-events:none}
-.mi{padding:0.75rem;pointer-events:none}
+.poster-inner{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none !important}
+.mp-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:3.5rem;opacity:0.2;pointer-events:none !important}
+.pg{position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(transparent,rgba(0,0,0,0.75));pointer-events:none !important}
+.yb{position:absolute;top:0.5rem;right:0.5rem;background:rgba(0,0,0,0.65);border:1px solid rgba(255,255,255,0.15);border-radius:5px;padding:0.12rem 0.4rem;font-size:0.67rem;color:rgba(255,255,255,0.7);z-index:2;pointer-events:none !important}
+.rb{position:absolute;bottom:0.55rem;right:0.55rem;background:rgba(0,0,0,0.75);border-radius:5px;padding:0.15rem 0.45rem;font-size:0.72rem;color:#fbbf24;font-weight:600;z-index:2;pointer-events:none !important}
+.mi{padding:0.75rem;pointer-events:none !important}
 .mt{font-size:0.84rem;font-weight:500;color:#e8e6f0;line-height:1.3;margin-bottom:0.25rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .mg{font-size:0.7rem;color:rgba(255,255,255,0.3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sb{height:2px;background:rgba(255,255,255,0.07);margin-top:0.45rem;border-radius:2px;overflow:hidden}
@@ -50,8 +51,8 @@ body{font-family:'DM Sans',sans-serif;background:#0a0a0f;color:#e8e6f0;min-heigh
 .dp.vis{display:block}
 .dh{display:flex;gap:2rem;padding:2rem;background:rgba(255,255,255,0.018);border-bottom:1px solid rgba(255,255,255,0.05)}
 .dpo{width:160px;flex-shrink:0;border-radius:12px;overflow:hidden;aspect-ratio:2/3;background:#111;position:relative}
-.dpo img{width:100%;height:100%;object-fit:cover}
-.dpo-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;font-family:'DM Serif Display',serif;opacity:0.25;position:absolute;top:0;left:0}
+.dpo img{width:100%;height:100%;object-fit:cover;display:block}
+.dpo-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;font-family:'DM Serif Display',serif;opacity:0.25;position:absolute;top:0;left:0;z-index:0}
 .dm{flex:1;min-width:0;padding-top:0.5rem}
 .dt{font-family:'DM Serif Display',serif;font-size:2rem;line-height:1.15;margin-bottom:0.6rem;color:#fff}
 .dg{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem}
@@ -69,13 +70,10 @@ body{font-family:'DM Sans',sans-serif;background:#0a0a0f;color:#e8e6f0;min-heigh
 .ml-info{display:inline-flex;align-items:center;gap:0.4rem;background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.18);border-radius:8px;padding:0.3rem 0.7rem;font-size:0.71rem;color:rgba(16,185,129,0.7);margin-bottom:1rem}
 .empty{text-align:center;padding:3rem 1rem;color:rgba(255,255,255,0.18);font-size:0.9rem}
 @media(max-width:600px){
-.hero{padding:2.5rem 1rem 2rem}
-.hero-title{font-size:2.5rem}
-.main{padding:1.2rem}
-.genre-bar{padding:0.7rem 1rem}
+.hero{padding:2.5rem 1rem 2rem}.hero-title{font-size:2.5rem}
+.main{padding:1.2rem}.genre-bar{padding:0.7rem 1rem}
 .grid{grid-template-columns:repeat(2,1fr);gap:0.75rem}
-.dh{flex-direction:column}.dpo{width:120px}
-.dt{font-size:1.5rem}}
+.dh{flex-direction:column}.dpo{width:120px}.dt{font-size:1.5rem}}
 </style>
 </head>
 <body>
@@ -90,9 +88,7 @@ body{font-family:'DM Sans',sans-serif;background:#0a0a0f;color:#e8e6f0;min-heigh
   </div>
   <div class="hint">Try: "Christopher Nolan" &nbsp;·&nbsp; "Sci-Fi" &nbsp;·&nbsp; "Parasite" &nbsp;·&nbsp; "Crime"</div>
 </div>
-
 <div class="genre-bar" id="genreBar"></div>
-
 <div class="main">
   <div class="dp" id="detailPanel">
     <button class="bb" id="backBtn">&#8592; Back to browse</button>
@@ -114,7 +110,6 @@ body{font-family:'DM Sans',sans-serif;background:#0a0a0f;color:#e8e6f0;min-heigh
       <div class="grid" id="recGrid"></div>
     </div>
   </div>
-
   <div id="browseView">
     <div id="topSec">
       <div class="slabel">&#11088; Highest rated films</div>
@@ -147,91 +142,87 @@ async function getPoster(title,year){
   const key=title+year;
   if(posterCache[key]!==undefined) return posterCache[key];
   try{
-    const r=await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&query=${encodeURIComponent(title)}&year=${year}`);
-    const d=await r.json();
-    if(d.results&&d.results[0]&&d.results[0].poster_path){
-      const url=TMDB_IMG+d.results[0].poster_path;
-      posterCache[key]=url;
-      return url;
+    const r=await fetch('https://api.themoviedb.org/3/search/movie?api_key='+TMDB_KEY+'&query='+encodeURIComponent(title)+'&year='+year);
+    const data=await r.json();
+    if(data.results&&data.results[0]&&data.results[0].poster_path){
+      const url=TMDB_IMG+data.results[0].poster_path;
+      posterCache[key]=url; return url;
     }
   }catch(e){}
-  posterCache[key]=null;
-  return null;
+  posterCache[key]=null; return null;
 }
 
-async function loadPosterInto(el,title,year){
+async function loadPoster(el,title,year){
   const url=await getPoster(title,year);
   if(url){
-    el.innerHTML='';
     const img=document.createElement('img');
-    img.src=url;
-    img.alt=title;
-    img.style.cssText='width:100%;height:100%;object-fit:cover;pointer-events:none';
+    img.src=url; img.alt=title;
+    img.style.cssText='width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;z-index:1;pointer-events:none';
     el.appendChild(img);
   }
 }
 
-function card(m,sim=false){
+// THE KEY FIX: use event delegation on document level
+document.addEventListener('click', function(e){
+  const card = e.target.closest('.mc');
+  if(card){
+    e.stopPropagation();
+    const id = parseInt(card.getAttribute('data-id'));
+    if(id) showDetail(id);
+  }
+});
+
+function makeCard(m, sim=false){
   const [c1,c2]=bg(m.title);
   const g=m.genres.split(' ').slice(0,2).join(' · ');
-  const simHtml=sim&&m.similarity!==undefined?`<div class="sb"><div class="sf" style="width:${m.similarity}%"></div></div><div class="sim-label">${m.similarity}% match</div>`:'';
-  const pid='p'+m.id+'_'+Date.now()+'_'+Math.floor(Math.random()*9999);
-  return `<div class="mc" data-id="${m.id}">
-  <div class="mp" style="background:linear-gradient(135deg,${c1},${c2})">
-    <div id="${pid}" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none"></div>
-    <div class="pg"></div>
-    <div class="yb">${m.year}</div>
-    <div class="rb">&#9733; ${m.rating}</div>
-  </div>
-  <div class="mi">
-    <div class="mt">${m.title}</div>
-    <div class="mg">${g}</div>
-    ${simHtml}
-  </div>
-</div>`;
+  const simHtml=sim&&m.similarity!==undefined?
+    '<div class="sb"><div class="sf" style="width:'+m.similarity+'%"></div></div><div class="sim-label">'+m.similarity+'% match</div>':'';
+  const pid='pi'+Date.now()+Math.random().toString(36).substr(2,4);
+  return '<div class="mc" data-id="'+m.id+'">'
+    +'<div class="mp" style="background:linear-gradient(135deg,'+c1+','+c2+')">'
+    +'<div class="poster-inner" id="'+pid+'"></div>'
+    +'<div class="pg"></div>'
+    +'<div class="yb">'+m.year+'</div>'
+    +'<div class="rb">&#9733; '+m.rating+'</div>'
+    +'</div>'
+    +'<div class="mi">'
+    +'<div class="mt">'+m.title+'</div>'
+    +'<div class="mg">'+g+'</div>'
+    +simHtml
+    +'</div></div>';
 }
 
-function attachCardClicks(gridId){
-  document.getElementById(gridId).querySelectorAll('.mc').forEach(card=>{
-    card.addEventListener('click',function(){
-      const id=parseInt(this.getAttribute('data-id'));
-      showDetail(id);
-    });
+function renderGrid(movies,gridId,sim=false){
+  const el=document.getElementById(gridId);
+  if(!movies||!movies.length){el.innerHTML='<div class="empty">No films found.</div>';return;}
+  el.innerHTML=movies.map(m=>makeCard(m,sim)).join('');
+  movies.forEach(m=>{
+    const card=el.querySelector('[data-id="'+m.id+'"]');
+    if(!card) return;
+    const pi=card.querySelector('.poster-inner');
+    if(pi) loadPoster(pi,m.title,m.year);
   });
 }
 
-function renderGrid(movies,id,s=false){
-  const el=document.getElementById(id);
-  if(!movies||movies.length===0){
-    el.innerHTML='<div class="empty">No films found. Try a different search.</div>';
-    return;
-  }
-  el.innerHTML=movies.map(m=>card(m,s)).join('');
-  attachCardClicks(id);
-  el.querySelectorAll('.mc').forEach((mc,i)=>{
-    const m=movies[i];
-    const pid=mc.querySelector('div[id^="p"]');
-    if(pid) loadPosterInto(pid,m.title,m.year);
-  });
-}
-
-async function showDetail(id){
-  const m=MM[id];
-  if(!m) return;
+function showDetail(id){
+  const m=MM[id]; if(!m) return;
   const [c1,c2]=bg(m.title);
   const dpo=document.getElementById('dPoster');
-  dpo.style.background=`linear-gradient(135deg,${c1},${c2})`;
+  // clear old poster image
+  const oldImg=dpo.querySelector('img');
+  if(oldImg) oldImg.remove();
+  dpo.style.background='linear-gradient(135deg,'+c1+','+c2+')';
   document.getElementById('dPosterFallback').textContent=m.title[0];
-  loadPosterInto(dpo,m.title,m.year);
+  loadPoster(dpo,m.title,m.year);
   document.getElementById('dTitle').textContent=m.title;
-  document.getElementById('dGenres').innerHTML=m.genres.split(' ').map(g=>`<span class="tag">${g}</span>`).join('');
-  document.getElementById('dStats').innerHTML=`
-    <div><div class="sv g">&#9733; ${m.rating}</div><div class="sl2">IMDb Rating</div></div>
-    <div><div class="sv">${m.year}</div><div class="sl2">Year</div></div>
-    <div><div class="sv">${m.runtime}m</div><div class="sl2">Runtime</div></div>
-    <div><div class="sv">${(m.votes/1e6).toFixed(1)}M</div><div class="sl2">Votes</div></div>`;
+  document.getElementById('dGenres').innerHTML=m.genres.split(' ').map(g=>'<span class="tag">'+g+'</span>').join('');
+  document.getElementById('dStats').innerHTML=
+    '<div><div class="sv g">&#9733; '+m.rating+'</div><div class="sl2">IMDb Rating</div></div>'
+    +'<div><div class="sv">'+m.year+'</div><div class="sl2">Year</div></div>'
+    +'<div><div class="sv">'+m.runtime+'m</div><div class="sl2">Runtime</div></div>'
+    +'<div><div class="sv">'+(m.votes/1e6).toFixed(1)+'M</div><div class="sl2">Votes</div></div>';
   document.getElementById('dPlot').textContent=m.plot;
-  document.getElementById('dCrew').innerHTML=`<strong>Director:</strong> ${m.director}&nbsp;&nbsp;·&nbsp;&nbsp;<strong>Cast:</strong> ${m.cast.split(' ').slice(0,6).join(', ')}`;
+  document.getElementById('dCrew').innerHTML='<strong>Director:</strong> '+m.director+'&nbsp;&nbsp;·&nbsp;&nbsp;<strong>Cast:</strong> '+m.cast.split(' ').slice(0,6).join(', ');
   const recs=(RECS[String(id)]||[]).map(r=>({...MM[r.id],similarity:r.sim})).filter(Boolean);
   renderGrid(recs,'recGrid',true);
   document.getElementById('detailPanel').classList.add('vis');
@@ -239,7 +230,7 @@ async function showDetail(id){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-document.getElementById('backBtn').onclick=()=>{
+document.getElementById('backBtn').onclick=function(){
   document.getElementById('detailPanel').classList.remove('vis');
   document.getElementById('browseView').style.display='block';
   window.scrollTo({top:0,behavior:'smooth'});
@@ -249,23 +240,23 @@ let activeG=null;
 function initGenres(){
   const genres=['Action','Drama','Comedy','Crime','Sci-Fi','Horror','Romance','Thriller','Fantasy','Animation','War','Mystery','Adventure','Biography','Western','Music'];
   const bar=document.getElementById('genreBar');
-  bar.innerHTML=genres.map(g=>`<div class="gp" data-g="${g}">${g}</div>`).join('');
-  bar.querySelectorAll('.gp').forEach(p=>{
-    p.onclick=()=>{
-      const g=p.dataset.g;
-      if(activeG===g){activeG=null;p.classList.remove('active');reset();return;}
+  bar.innerHTML=genres.map(g=>'<div class="gp" data-g="'+g+'">'+g+'</div>').join('');
+  bar.querySelectorAll('.gp').forEach(function(p){
+    p.onclick=function(){
+      const g=this.dataset.g;
+      if(activeG===g){activeG=null;this.classList.remove('active');reset();return;}
       activeG=g;
       bar.querySelectorAll('.gp').forEach(x=>x.classList.remove('active'));
-      p.classList.add('active');
+      this.classList.add('active');
       document.getElementById('topSec').style.display='none';
       const f=MOVIES.filter(m=>m.genres.toLowerCase().includes(g.toLowerCase())).sort((a,b)=>b.rating-a.rating).slice(0,28);
-      document.getElementById('movLabel').textContent=`${g} films`;
+      document.getElementById('movLabel').textContent=g+' films';
       renderGrid(f,'movGrid');
     };
   });
 }
 
-function topN(n=150){return [...MOVIES].sort((a,b)=>b.rating-a.rating).slice(0,n);}
+function topN(n){return [...MOVIES].sort((a,b)=>b.rating-a.rating).slice(0,n||150);}
 
 function reset(){
   document.getElementById('topSec').style.display='block';
@@ -274,33 +265,36 @@ function reset(){
 }
 
 let dbt=null;
-document.getElementById('searchInput').oninput=e=>{
+document.getElementById('searchInput').oninput=function(){
   clearTimeout(dbt);
-  const q=e.target.value.trim().toLowerCase();
+  const q=this.value.trim().toLowerCase();
+  // search always works regardless of detail panel
+  document.getElementById('detailPanel').classList.remove('vis');
+  document.getElementById('browseView').style.display='block';
   document.getElementById('topSec').style.display=q?'none':'block';
   document.querySelectorAll('.gp').forEach(p=>p.classList.remove('active'));
   activeG=null;
   if(!q){reset();return;}
   dbt=setTimeout(()=>{
-    const r=MOVIES.filter(m=>
-      m.title.toLowerCase().includes(q)||m.genres.toLowerCase().includes(q)||
-      m.director.toLowerCase().includes(q)||m.cast.toLowerCase().includes(q)||
-      m.plot.toLowerCase().includes(q)).slice(0,32);
-    document.getElementById('movLabel').textContent=`Results for "${e.target.value.trim()}"`;
-    renderGrid(r,'movGrid');
+    const results=MOVIES.filter(m=>
+      m.title.toLowerCase().includes(q)||
+      m.genres.toLowerCase().includes(q)||
+      m.director.toLowerCase().includes(q)||
+      m.cast.toLowerCase().includes(q)||
+      m.plot.toLowerCase().includes(q)
+    ).slice(0,32);
+    document.getElementById('movLabel').textContent='Results for "'+this.value.trim()+'"';
+    renderGrid(results,'movGrid');
   },300);
 };
 
 function init(){
   initGenres();
-  document.getElementById('topRow').innerHTML=topN(12).map(m=>`
-    <div class="tc" data-id="${m.id}" style="cursor:pointer">
-      <span class="cr">&#9733; ${m.rating}</span><span>${m.title}</span>
-    </div>`).join('');
-  document.getElementById('topRow').querySelectorAll('.tc').forEach(tc=>{
-    tc.addEventListener('click',function(){
-      showDetail(parseInt(this.getAttribute('data-id')));
-    });
+  const top12=topN(12);
+  const tr=document.getElementById('topRow');
+  tr.innerHTML=top12.map(m=>'<div class="tc" data-id="'+m.id+'"><span class="cr">&#9733; '+m.rating+'</span><span>'+m.title+'</span></div>').join('');
+  tr.querySelectorAll('.tc').forEach(function(tc){
+    tc.onclick=function(){showDetail(parseInt(this.getAttribute('data-id')));};
   });
   renderGrid(topN(),'movGrid');
 }
